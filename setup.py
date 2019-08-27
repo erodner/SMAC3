@@ -2,7 +2,7 @@
 import json
 import os
 from setuptools import setup
-
+import codecs
 
 with open('requirements.txt') as fh:
     requirements = [line.strip() for line in fh.readlines()]
@@ -13,7 +13,7 @@ with open('extras_require.json') as fh:
 
 def get_version():
     version_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "smac", "__init__.py")
-    for line in open(version_file):
+    for line in codecs.open(version_file, "r", "utf-8"):
         if line.startswith("__version__"):
             version = line.split("=")[1].strip().replace("'", "").replace('"', '')
             return version
@@ -22,7 +22,7 @@ def get_version():
 
 def get_author():
     version_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "smac", "__init__.py")
-    for line in open(version_file):
+    for line in codecs.open(version_file, "r", "utf-8"):
         if line.startswith("__author__"):
             version = line.split("=")[1].strip().replace("'", "").replace('"', '')
             return version
